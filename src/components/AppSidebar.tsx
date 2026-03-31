@@ -1,16 +1,4 @@
-import {
-  Brain,
-  MessageSquare,
-  BookOpen,
-  FileQuestion,
-  History,
-  Newspaper,
-  ClipboardCheck,
-  LayoutDashboard,
-  Settings,
-  Trophy,
-  Flame,
-} from "lucide-react";
+import { Brain, MessageSquare, BookOpen, FileQuestion, History, Newspaper, ClipboardCheck, LayoutDashboard, Settings, Trophy, Flame, ChartBar as BarChart3 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -30,6 +18,7 @@ import {
 const mainNav = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Smart Quiz", url: "/quiz", icon: Brain },
+  { title: "Quiz Analytics", url: "/analytics", icon: BarChart3 },
   { title: "AI Assistant", url: "/ai-assistant", icon: MessageSquare },
   { title: "Syllabus Map", url: "/syllabus", icon: BookOpen },
 ];

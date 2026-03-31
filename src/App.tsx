@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/hooks/useAuth";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import QuizPage from "./pages/QuizPage";
+import QuizAnalyticsDashboard from "./pages/QuizAnalyticsDashboard";
 import AIAssistantPage from "./pages/AIAssistantPage";
 import SyllabusPage from "./pages/SyllabusPage";
 import QuestionGeneratorPage from "./pages/QuestionGeneratorPage";
@@ -19,24 +21,27 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
-          <Route path="/quiz" element={<DashboardLayout><QuizPage /></DashboardLayout>} />
-          <Route path="/ai-assistant" element={<DashboardLayout><AIAssistantPage /></DashboardLayout>} />
-          <Route path="/syllabus" element={<DashboardLayout><SyllabusPage /></DashboardLayout>} />
-          <Route path="/question-generator" element={<DashboardLayout><QuestionGeneratorPage /></DashboardLayout>} />
-          <Route path="/pyq-analysis" element={<DashboardLayout><PYQAnalysisPage /></DashboardLayout>} />
-          <Route path="/current-affairs" element={<DashboardLayout><CurrentAffairsPage /></DashboardLayout>} />
-          <Route path="/mock-tests" element={<DashboardLayout><MockTestsPage /></DashboardLayout>} />
-          <Route path="/settings" element={<DashboardLayout><SettingsPage /></DashboardLayout>} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+            <Route path="/quiz" element={<DashboardLayout><QuizPage /></DashboardLayout>} />
+            <Route path="/analytics" element={<DashboardLayout><QuizAnalyticsDashboard /></DashboardLayout>} />
+            <Route path="/ai-assistant" element={<DashboardLayout><AIAssistantPage /></DashboardLayout>} />
+            <Route path="/syllabus" element={<DashboardLayout><SyllabusPage /></DashboardLayout>} />
+            <Route path="/question-generator" element={<DashboardLayout><QuestionGeneratorPage /></DashboardLayout>} />
+            <Route path="/pyq-analysis" element={<DashboardLayout><PYQAnalysisPage /></DashboardLayout>} />
+            <Route path="/current-affairs" element={<DashboardLayout><CurrentAffairsPage /></DashboardLayout>} />
+            <Route path="/mock-tests" element={<DashboardLayout><MockTestsPage /></DashboardLayout>} />
+            <Route path="/settings" element={<DashboardLayout><SettingsPage /></DashboardLayout>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
