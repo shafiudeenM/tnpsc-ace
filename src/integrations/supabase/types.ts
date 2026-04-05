@@ -14,6 +14,47 @@ export type Database = {
   }
   public: {
     Tables: {
+      mistake_categories: {
+        Row: {
+          created_at: string
+          frequency: number
+          id: string
+          last_made_at: string
+          mistake_type: string
+          question_id: string
+          subject: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          frequency?: number
+          id?: string
+          last_made_at?: string
+          mistake_type: string
+          question_id: string
+          subject: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          frequency?: number
+          id?: string
+          last_made_at?: string
+          mistake_type?: string
+          question_id?: string
+          subject?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mistake_categories_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
