@@ -1,4 +1,5 @@
-import { supabase, Question, QuizAttempt, QuizAnswer } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
+import type { Question, QuizAttempt } from "@/lib/supabase";
 import { SpacedRepetitionService } from "./spacedRepetition";
 
 export interface QuizSession {
@@ -54,7 +55,7 @@ export class QuizEngineService {
       const reviewQs = reviewQuestions
         .map((q: any) => q.questions)
         .filter(Boolean) as Question[];
-      questions = [...reviewQs, ...newQuestions];
+      questions = [...reviewQs, ...newQuestions] as Question[];
     }
 
     // Randomize question order

@@ -84,11 +84,19 @@ export class MistakeTrackingService {
     );
 
     if (error && error.code !== "PGRST204") {
-      // Update if exists
+      // If upsert failed, fetch current and update manually
+      const { data: existing } = await supabase
+        .from("mistake_categories")
+        .select("frequency")
+        .eq("user_id", userId)
+        .eq("question_id", questionId)
+        .eq("mistake_type", mistakeType)
+        .single();
+
       await supabase
         .from("mistake_categories")
         .update({
-          frequency: supabase.rpc("increment_frequency"),
+          frequency: (existing?.frequency || 0) + 1,
           last_made_at: new Date().toISOString(),
         })
         .eq("user_id", userId)

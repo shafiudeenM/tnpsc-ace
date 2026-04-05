@@ -1,10 +1,6 @@
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
-
+// Re-export types for backward compatibility
 export type Question = {
   id: string;
   question_text: string;
@@ -38,7 +34,7 @@ export type UserQuestionProgress = {
 export type QuizAttempt = {
   id: string;
   user_id: string;
-  quiz_type: "daily" | "subject" | "spaced_repetition" | "weak_areas" | "custom";
+  quiz_type: string;
   subject?: string;
   total_questions: number;
   started_at: string;
@@ -61,7 +57,7 @@ export type QuizAnswer = {
   time_taken_seconds: number;
   flagged: boolean;
   reviewed_before_submit: boolean;
-  mistake_type?: "careless" | "concept" | "time_pressure";
+  mistake_type?: string;
   user_reported_reason?: string;
 };
 
@@ -95,3 +91,5 @@ export type UserWeakArea = {
   hard_accuracy?: number;
   needs_improvement: boolean;
 };
+
+export { supabase };

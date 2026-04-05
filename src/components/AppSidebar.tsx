@@ -1,6 +1,8 @@
-import { Brain, MessageSquare, BookOpen, FileQuestion, History, Newspaper, ClipboardCheck, LayoutDashboard, Settings, Trophy, Flame, ChartBar as BarChart3 } from "lucide-react";
+import { Brain, MessageSquare, BookOpen, FileQuestion, History, Newspaper, ClipboardCheck, LayoutDashboard, Settings, Trophy, Flame, ChartBar as BarChart3, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 import {
   Sidebar,
   SidebarContent,
@@ -31,10 +33,18 @@ const prepNav = [
 ];
 
 export function AppSidebar() {
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+    toast.success("Signed out successfully");
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
@@ -131,6 +141,12 @@ export function AppSidebar() {
                 <Settings className="h-4 w-4" />
                 {!collapsed && <span>Settings</span>}
               </NavLink>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Sign Out" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4" />
+              {!collapsed && <span>Sign Out</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
