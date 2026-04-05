@@ -337,17 +337,14 @@ export class MistakeTrackingService {
       const easyAccuracy =
         area.easyTotal && area.easyTotal > 0
           ? (area.easyCorrect! / area.easyTotal) * 100
-          )
           : undefined;
       const mediumAccuracy =
         area.mediumTotal && area.mediumTotal > 0
           ? (area.mediumCorrect! / area.mediumTotal) * 100
-          )
           : undefined;
       const hardAccuracy =
         area.hardTotal && area.hardTotal > 0
           ? (area.hardCorrect! / area.hardTotal) * 100
-          )
           : undefined;
 
       const needsImprovement = accuracy < 65;
