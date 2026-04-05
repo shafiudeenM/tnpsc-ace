@@ -143,6 +143,12 @@ export function AppSidebar() {
               </NavLink>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Sign Out" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4" />
+              {!collapsed && <span>Sign Out</span>}
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
