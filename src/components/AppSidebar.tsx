@@ -33,10 +33,18 @@ const prepNav = [
 ];
 
 export function AppSidebar() {
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+    toast.success("Signed out successfully");
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
