@@ -1,6 +1,8 @@
-import { Brain, MessageSquare, BookOpen, FileQuestion, History, Newspaper, ClipboardCheck, LayoutDashboard, Settings, Trophy, Flame, ChartBar as BarChart3 } from "lucide-react";
+import { Brain, MessageSquare, BookOpen, FileQuestion, History, Newspaper, ClipboardCheck, LayoutDashboard, Settings, Trophy, Flame, ChartBar as BarChart3, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 import {
   Sidebar,
   SidebarContent,
