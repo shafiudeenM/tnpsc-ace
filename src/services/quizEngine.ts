@@ -55,7 +55,7 @@ export class QuizEngineService {
       const reviewQs = reviewQuestions
         .map((q: any) => q.questions)
         .filter(Boolean) as Question[];
-      questions = [...reviewQs, ...newQuestions];
+      questions = [...reviewQs, ...newQuestions] as Question[];
     }
 
     // Randomize question order
